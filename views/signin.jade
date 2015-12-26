@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div#container
+    h1 用户#{title}
+    form(method='post')
+      if error
+        div.error!= error
+      div.username.form-group
+        label(for='username') 用户名
+        input(id='username' name='username' value=username).form-control
+        span.error
+      
+      div.password.form-group
+        label(for='password') 密码
+        input(id='password' name='password' ).form-control
+        span.error
+
+      div.buttons
+        input.button.reset(type='reset' value='清除').btn-danger.btn
+        input.button.submit(type='submit' value='提交').btn-default.btn
+        a.btn.btn-info(href='/regist') 注册
+          

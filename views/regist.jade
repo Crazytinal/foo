@@ -1,0 +1,41 @@
+extends layout
+block content
+    h1 注册用户
+    form(method='post')
+      if error
+        div.error!= error
+      div.username.form-group
+        label(for='username') 用户名
+        input(id='username' name='username' value=user.username placeholder='durant35').form-control
+        span.error
+      
+      div.sid.form-group
+        label(for='sid') 学号
+        input(id='sid' name='sid' value=user.sid placeholder='14331010').form-control
+        span.error
+      
+      div.phone.form-group
+        label(for='phone') 电话
+        input(id='phone' name='phone' value=user.phone placeholder='12312312313').form-control
+        span.error
+      
+      div.email.form-group
+        label(for='email') 邮箱
+        input(id='email' name='email' value=user.email placeholder='durant35@noba.com').form-control
+        span.error
+
+      div.password.form-group
+        label(for='password') 密码
+        input(id='password' name='password' value=user.password placeholder='durant35').form-control
+        span.error
+
+      div.passwordConfirm.form-group
+        label(for='passwordConfirm') 密码确认
+        input(id='passwordConfirm' value=user.password placeholder='durant35').form-control
+        span.error
+
+      div.buttons
+        input.button.reset(type='reset' value='清除').btn.btn-danger
+        input.button.submit(type='submit' value='提交').btn.btn-info
+    script(type='text/javascript' src='js/validator.js')
+    script(type='text/javascript' src='js/regist.js')
