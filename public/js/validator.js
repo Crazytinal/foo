@@ -36,7 +36,6 @@ var validator = {
     return this.form.password.status = /^[a-zA-Z0-9_\-]{6,12}$/.test(password);
   },
   isPasswordConfirmValid: function(password_confirm) {
-    console.log(this.form.passwordConfirm.status = password_confirm == this.form.password.passwordConfirm);
     return this.form.passwordConfirm.status = password_confirm == this.form.password.passwordConfirm;
   },
   isSidValid: function (sid){
@@ -57,7 +56,6 @@ var validator = {
   },
 
   isFormValid: function(){
-    console.log(this.form.passwordConfirm.status);
     return this.form.username.status && this.form.sid.status && this.form.phone.status && this.form.email.status && this.form.password.status &&
     (typeof window != 'object' || this.form.passwordConfirm.status);
   },
@@ -75,7 +73,21 @@ var validator = {
       if (registry.hasOwnProperty(key) && registry[key][attr] == user[attr]) return false;
     }
     return true;
+  },
+
+  findFormatErrors: function(user) {
+    var errorMessages = [];
+    for(var key in user) 
+        if (!this.isFieldValid(key, user[key])) {
+            errorMessages.push(this.form[key].errorMessage);
+        }
+          console.log(user);
+
+    //formatError should set null if it is []
+    return errorMessages.length ? errorMessages : null;
   }
+
+
 }
 
 if (typeof module == 'object') { // 服务端共享

@@ -8,7 +8,7 @@ $(function() {
         }
         $.post('/signout', user, function(data, status) {
             console.log(status);
-            document.write(data);
+            window.location.href = '/signin';
         });
     });
 });

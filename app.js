@@ -8,8 +8,7 @@ var FileStore = require('session-file-store')(session);
 var bodyParser = require('body-parser');
 
 
-module.exports = function(db){
-  var routes = require('./routes/index')(db);
+  var routes = require('./routes/index');
   var app = express();
 
   // view engine setup
@@ -25,7 +24,7 @@ module.exports = function(db){
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(cookieParser());
   app.use(session({
-    secret: 'signin',
+    secret: 'signinin',
     store: new FileStore({retries: 10}),
     resave: false,
     saveUninitialized: false
@@ -64,4 +63,6 @@ module.exports = function(db){
     });
   });
 
-}
+
+
+module.exports = app;
