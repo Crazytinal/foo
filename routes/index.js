@@ -3,7 +3,6 @@ var validator = require('../public/js/validator');
 var api = require('../public/js/api');
 var debug = require("debug")('signin:index');
 var bcrypt = require('../node_modules/bcrypt-nodejs/bCrypt');
-   var _ = require('lodash');
 
 //to check the video how to require usermanger
 // var userManager = require('./userManager')(db);
@@ -13,10 +12,11 @@ var mongo = require('mongodb').MongoClient;
 
 var mongourl = 'mongodb://localhost:27017/signin';
 
-    var router = express.Router();
+var router = express.Router();
 var db;
 var userslist;
 var userManager;
+
 mongo.connect(mongourl).catch(function(error) {
     debug("Connect to mongodb " + mongourl + "was failed with error: " + error);
   }).then(function(db_) {
@@ -124,31 +124,6 @@ router.get('/', function(req, res) {
 });
 
 
-// function checkUser(user) {
-//     var errorMessages = [];
-//     var userlists = {};
-//   //temporary ... get from database
-//     return new Promise(function(resolve, reject) {
-//     userslist.find({}).toArray(function (err, users) {
-//         //turn an array into object
-//         for (var key in users) {
-//             if (key != 'password' && key != '_id')
-//             userlists[users[key].username] = users[key];
-//         }
-//           for(var key in user) {
-//             if (key != 'password' && key != '_id') {
-
-//             if (!validator.isFieldValid(key, user[key])) errorMessages.push(validator.form[key].errorMessage);
-//             if (!validator.isAttrValueUnique(users, user, key)) errorMessages.push(
-//               "key: " + key + " is not unique by value: " + user[key] + '</br>'
-//             );
-//             }
-//           }
-//       errorMessages.length>0 ? reject(errorMessages) : resolve(user);
-
-//     });
-//   });
-// }
 
 function is_user_login(req) {
     return !!req.session.user;
